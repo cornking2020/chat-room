@@ -1,0 +1,33 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../generated"
+  moduleFormat = "esm"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// AI Characters
+model Character {
+  id           String  @id @default(cuid())
+  name         String  @map("name")
+  systemPrompt String  @map("system_prompt")
+  ollamaUrl    String  @map("ollama_url")
+  ollamaApiKey String? @map("ollama_api_key")
+  ollamaModel  String  @map("ollama_model")
+
+  @@map("characters")
+}
+
+// Chats
+model Message {
+  id         String   @id @default(cuid())
+  content    String   @map("content")
+  senderName String   @map("sender_name")
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@map("messages")
+}

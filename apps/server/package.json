@@ -1,0 +1,39 @@
+{
+  "name": "server",
+  "main": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc && tsc-alias",
+    "check-types": "tsc --noEmit",
+    "compile": "bun build --compile --minify --sourcemap --bytecode ./src/index.ts --outfile server",
+    "dev": "bun run --hot src/index.ts",
+    "start": "bun run dist/src/index.js",
+    "db:push": "prisma db push --schema ./prisma/schema",
+    "db:studio": "prisma studio",
+    "db:generate": "prisma generate --schema ./prisma/schema",
+    "db:migrate": "prisma migrate dev"
+  },
+  "prisma": {
+    "schema": "./schema"
+  },
+  "dependencies": {
+    "@hono/trpc-server": "^0.3.4",
+    "@langchain/community": "^0.3.47",
+    "@langchain/core": "^0.3.61",
+    "@langchain/ollama": "^0.2.3",
+    "@prisma/client": "^6.9.0",
+    "@trpc/client": "^11.0.0",
+    "@trpc/server": "^11.0.0",
+    "dotenv": "^16.4.7",
+    "hono": "^4.7.6",
+    "langchain": "^0.3.29",
+    "ollama": "^0.5.16",
+    "zod": "^3.25.16"
+  },
+  "devDependencies": {
+    "tsc-alias": "^1.8.11",
+    "typescript": "^5.8.2",
+    "@types/bun": "^1.2.6",
+    "prisma": "^6.9.0"
+  }
+}
